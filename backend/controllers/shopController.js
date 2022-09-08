@@ -1,49 +1,49 @@
-const Shop = require("../models/ShopModel");
-const mongoose = require("mongoose");
+const Shop = require("../models/ShopModel")
+const mongoose = require("mongoose")
 
 // get all shops
 const getShops = async (req, res) => {
     const shops = await Shop.find({})
 
-    res.status(200).json(shops);
+    res.status(200).json(shops)
 }
 
 // get a single shop
 const getShop = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.params
 
-    if (!mongoose.Types.ObjectID.isValid(id)) {
-        return res.status(404).json({ error: "No shuch shop" })
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({ error: "No such shop" })
     }
 
     const shop = await Shop.findById(id)
 
     if (!shop) {
-        return res.status(404).json({ error: "No shop found" })
+        return res.status(404).json({ error: "No such shop" })
     }
 
     res.status(200).json(shop)
 }
 
-// create a new shop 
+// create a new shop
 const createShop = async (req, res) => {
-    const { title, amount } = req.body;
+    const { title, amount } = req.body
 
-    let emptyField = []
+    let emptyFields = []
 
     if (!title) {
-        emptyField.push("title")
+        emptyFields.push("title")
     }
 
     if (!amount) {
-        emptyField.push("amount")
+        emptyFields.push("amount")
     }
 
-    if (emptyField.length > 0) {
-        return res.status(400).json({ error: "please fill in all the fields", emptyField })
+    if (emptyFields.length > 0) {
+        return res.status(400).json({ error: "please fill in all the fields", emptyFields })
     }
 
-    // add to the db
+    // add to database
     try {
         const shop = await Shop.create({ title, amount })
         res.status(200).json(shop)
@@ -57,13 +57,13 @@ const deleteShop = async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: "No sush shop" })
+        return res.status(400).json({ error: "No such shop" })
     }
 
-    const shop = await Shop.findByIdAndDelete({ _id: id })
+    const shop = await Shop.findOneAndDelete({ _id: id })
 
     if (!shop) {
-        return res.status(400).json({ error: "No sush shop" })
+        return res.status(400).json({ error: "No such shop" })
     }
 
     res.status(200).json(shop)
@@ -74,7 +74,7 @@ const updateShop = async (req, res) => {
     const { id } = req.params
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({ error: "No sush shop" })
+        return res.status(400).json({ error: "No such shop" })
     }
 
     const shop = await Shop.findOneAndUpdate({ _id: id }, {
@@ -82,7 +82,7 @@ const updateShop = async (req, res) => {
     })
 
     if (!shop) {
-        return res.status(400).json({ error: "No sush shop" })
+        return res.status(400).json({ error: "No such shop" })
     }
 
     res.status(200).json(shop)

@@ -14,5 +14,5 @@ const shopSchema = new Schema({
     timestamps: true
 })
 
-// create collection shop
-module.exports = mongoose.model("shop", shopSchema)
+// create collection shops
+module.exports = mongoose.model("shops", shopSchema)

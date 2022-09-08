@@ -1,27 +1,27 @@
-const express = require("express");
-const router = express();
-
+const express = require("express")
 const {
     getShops,
     getShop,
     createShop,
     deleteShop,
     updateShop
-} = require('../controllers/shopController')
+} = require("../controllers/shopController")
 
-// get all shops
+const router = express.Router()
+
+// GET all shops
 router.get("/", getShops)
 
-// get a single shop
+// GET a single shop
 router.get("/:id", getShop)
 
-// post a new shop
+// POST a new shop
 router.post("/", createShop)
 
-// delete a shop
+// DELETE a shop
 router.delete("/:id", deleteShop)
 
-// update a shop
+// UPDATE a shop
 router.patch("/:id", updateShop)
 
-module.exports = router;
+module.exports = router
