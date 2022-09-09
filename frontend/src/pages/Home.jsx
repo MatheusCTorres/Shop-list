@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchShops = async () => {
-      const response = await fetch("http://localhost:4000/api/shops");
+      const response = await fetch("https://app-mern-shop.herokuapp.com/api/shops");
       const json = await response.json();
 
       if (response.ok) {

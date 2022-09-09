@@ -5,7 +5,7 @@ export default function ShopDetails({ shop }) {
 
   const handleClick = async () => {
     const response = await fetch(
-      "http://localhost:4000/api/shops/" + shop._id,
+      "https://app-mern-shop.herokuapp.com/api/shops/" + shop._id,
       {
         method: "DELETE",
       }

@@ -23,8 +23,8 @@ app.use("/api/shops", shopRoutes)
 // connect to db  
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
-        app.listen(process.env.PORT, () => {
-            console.log("connected to db and listening to port" + process.env.PORT);
+        app.listen(process.env.PORT || 3001, () => {
+            console.log("connected to db");
         })
     })
     .catch((error) => {

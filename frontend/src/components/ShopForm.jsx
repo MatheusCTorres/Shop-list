@@ -12,7 +12,7 @@ export default function WorkoutForm() {
     e.preventDefault();
 
     const shop = { title, amount };
-    const response = await fetch("http://localhost:4000/api/shops", {
+    const response = await fetch("https://app-mern-shop.herokuapp.com/api/shops", {
       method: "POST",
       body: JSON.stringify(shop),
       headers: {
